@@ -12,6 +12,7 @@ export default function Home() {
     movimientos,
     agregarMovimiento,
     eliminarMovimiento,
+    editarMovimiento,
   } = useMovimientos();
 
   const movimientosOrdenados = [...movimientos].sort(
@@ -38,11 +39,9 @@ export default function Home() {
           movimientosOrdenados.map((mov) => (
             <MovimientoItem
               key={mov.id}
-              descripcion={mov.descripcion}
-              monto={mov.monto}
-              fecha={mov.fecha}
-              tipo={mov.tipo}
+              {...mov}
               onDelete={() => eliminarMovimiento(mov.id)}
+              onEditar={editarMovimiento}
             />
           ))
         ) : (

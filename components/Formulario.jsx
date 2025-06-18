@@ -4,6 +4,7 @@ export default function Formulario({ onAgregar }) {
   const [descripcion, setDescripcion] = useState('');
   const [monto, setMonto] = useState('');
   const [tipo, setTipo] = useState('ingreso');
+  const [categoria, setCategoria] = useState('otro');
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -15,12 +16,16 @@ export default function Formulario({ onAgregar }) {
       descripcion,
       monto: parseFloat(monto),
       tipo,
-      fecha: new Date().toISOString().split('T')[0], // YYYY-MM-DD
+      categoria,
+      fecha: new Date().toISOString().split('T')[0], // formato YYYY-MM-DD
     };
 
     onAgregar(nuevoMovimiento);
+
+    // Reset
     setDescripcion('');
     setMonto('');
+    setCategoria('otro');
   };
 
   return (
@@ -56,6 +61,22 @@ export default function Formulario({ onAgregar }) {
         >
           <option value="ingreso">Ingreso</option>
           <option value="gasto">Gasto</option>
+        </select>
+      </div>
+
+      <div className="mb-4">
+        <label className="block text-sm text-gray-400 mb-1">Categoría</label>
+        <select
+          value={categoria}
+          onChange={(e) => setCategoria(e.target.value)}
+          className="w-full p-2 rounded bg-gray-900 text-white"
+        >
+          <option value="comida">Comida</option>
+          <option value="transporte">Transporte</option>
+          <option value="salario">Salario</option>
+          <option value="hogar">Hogar</option>
+          <option value="entretenimiento">Entretenimiento</option>
+          <option value="otro">Otro</option>
         </select>
       </div>
 

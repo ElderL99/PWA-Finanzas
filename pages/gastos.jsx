@@ -4,7 +4,11 @@ import MovimientoItem from '@/components/MovimientoItem';
 import useMovimientos from '@/hooks/useMovimientos';
 
 export default function Gastos() {
-  const { gastos } = useMovimientos();
+  const {
+    gastos,
+    eliminarMovimiento,
+    editarMovimiento
+  } = useMovimientos();
 
   const gastosOrdenados = [...gastos].sort(
     (a, b) => new Date(b.fecha) - new Date(a.fecha)
@@ -23,10 +27,9 @@ export default function Gastos() {
           gastosOrdenados.map((mov) => (
             <MovimientoItem
               key={mov.id}
-              descripcion={mov.descripcion}
-              monto={mov.monto}
-              fecha={mov.fecha}
-              tipo={mov.tipo}
+              {...mov}
+              onDelete={() => eliminarMovimiento(mov.id)}
+              onEditar={editarMovimiento}
             />
           ))
         ) : (
