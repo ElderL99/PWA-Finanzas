@@ -7,11 +7,35 @@ export default function useMovimientos() {
 
   // Cargar desde localStorage al inicio
   useEffect(() => {
-    const dataGuardada = localStorage.getItem(LOCAL_STORAGE_KEY);
-    if (dataGuardada) {
-      setMovimientos(JSON.parse(dataGuardada));
-    }
-  }, []);
+  const datosFake = [
+    {
+      id: 1,
+      descripcion: 'Sueldo Abril',
+      monto: 1000,
+      tipo: 'ingreso',
+      fecha: '2025-04-01',
+    },
+    {
+      id: 2,
+      descripcion: 'Super Mayo',
+      monto: 200,
+      tipo: 'gasto',
+      fecha: '2025-05-05',
+    },
+    {
+      id: 3,
+      descripcion: 'Freelance Junio',
+      monto: 500,
+      tipo: 'ingreso',
+      fecha: '2025-06-15',
+    },
+  ];
+
+  setMovimientos(datosFake);
+  localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(datosFake));
+}, []);
+
+
 
   // Guardar en localStorage cada vez que cambian
   useEffect(() => {
