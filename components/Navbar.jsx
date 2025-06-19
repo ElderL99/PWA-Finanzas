@@ -1,5 +1,6 @@
 import Link from 'next/link';
-import { MdHome, MdTrendingUp, MdTrendingDown } from 'react-icons/md';
+import React from 'react';
+import { MdHome, MdTrendingUp, MdTrendingDown, MdBarChart } from 'react-icons/md';
 
 export default function Navbar() {
   return (
@@ -15,6 +16,10 @@ export default function Navbar() {
       <Link href="/gastos" className="flex flex-col items-center">
         <MdTrendingDown className="text-xl" />
         <span>Gastos</span>
+      </Link>
+      <Link href="/estadisticas" className="flex flex-col items-center">
+        <MdBarChart className="text-xl" />
+        <span>Estadísticas</span>
       </Link>
     </nav>
   );

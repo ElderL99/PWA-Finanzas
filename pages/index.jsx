@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import React from 'react';
 import Navbar from '../components/Navbar';
 import CardResumen from '../components/CardResumen';
 import useMovimientos from '@/hooks/useMovimientos';
@@ -12,7 +13,7 @@ export default function Home() {
     movimientos,
     agregarMovimiento,
     eliminarMovimiento,
-    editarMovimiento,
+    editarMovimiento, // ✅ nuevo
   } = useMovimientos();
 
   const movimientosOrdenados = [...movimientos].sort(
@@ -39,9 +40,14 @@ export default function Home() {
           movimientosOrdenados.map((mov) => (
             <MovimientoItem
               key={mov.id}
-              {...mov}
+              id={mov.id}
+              descripcion={mov.descripcion}
+              monto={mov.monto}
+              fecha={mov.fecha}
+              tipo={mov.tipo}
+              categoria={mov.categoria}
               onDelete={() => eliminarMovimiento(mov.id)}
-              onEditar={editarMovimiento}
+              onEditar={editarMovimiento} // ✅ pasa la función
             />
           ))
         ) : (

@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import React from 'react';
 import Navbar from '../components/Navbar';
 import MovimientoItem from '@/components/MovimientoItem';
 import useMovimientos from '@/hooks/useMovimientos';

@@ -1,3 +1,4 @@
+import React from 'react';
 export default function CardResumen({ ingresos, gastos }) {
   const totalIngresos = ingresos.reduce((acc, mov) => acc + mov.monto, 0);
   const totalGastos = gastos.reduce((acc, mov) => acc + mov.monto, 0);

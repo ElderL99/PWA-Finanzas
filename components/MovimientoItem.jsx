@@ -1,5 +1,5 @@
 import { useState } from 'react';
-
+import React from 'react';
 export default function MovimientoItem({
   id,
   descripcion,
@@ -24,12 +24,18 @@ export default function MovimientoItem({
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (!form.descripcion || !form.monto || isNaN(form.monto)) {
+      return alert('Completa todos los campos correctamente');
+    }
+
     onEditar({
       id,
       ...form,
       monto: parseFloat(form.monto),
       fecha,
     });
+
     setEditando(false);
   };
 
@@ -91,7 +97,9 @@ export default function MovimientoItem({
         <div className="flex justify-between items-center">
           <div>
             <p className="font-medium">{descripcion}</p>
-            <p className="text-xs text-gray-500">{fecha} – {categoria}</p>
+            <p className="text-xs text-gray-500">
+              {fecha} – {categoria || 'otro'}
+            </p>
           </div>
           <div className="flex items-center gap-3">
             <p className={`text-base font-semibold ${color}`}>
